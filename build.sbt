@@ -1,17 +1,21 @@
 def publishSettings(enabled: Boolean): Seq[Def.Setting[_]] = {
   if(!enabled){
-    Seq(skip in publish := true)
+    skip in publish := true
   } else {
-    // refined as needed for publishing
-    // publishTo := ???
-    Seq()
+    publishTo := Some {
+      if (isSnapshot.value) {
+        Opts.resolver.sonatypeSnapshots
+      } else {
+        Opts.resolver.sonatypeStaging
+      }
+    }
   }
 }
 
 lazy val root = (project in file("."))
   .aggregate(core, doc)
   .enablePlugins(GitBranchPrompt, GitVersioning)
-  // this project is not supposed to be used externally, so don't publish
+  // root intentionally does not contain any code, so don't publish
   .settings(publishSettings(enabled = false))
   .settings(
     name := "factories-root"
@@ -25,7 +29,6 @@ lazy val core = (project in file("core"))
     name := "factories"
   )
 
-// TODO: set-up a gh-pages branch as explained here: https://github.com/sbt/sbt-ghpages#initializing-the-gh-pages-branch
 lazy val doc = (project in file("doc"))
   .dependsOn(core)
   .enablePlugins(GhpagesPlugin, GitBranchPrompt, GitVersioning, ParadoxSitePlugin, ParadoxPlugin, PreprocessPlugin)

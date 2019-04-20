@@ -10,7 +10,7 @@ object CommonSettingsPlugin extends CommonSettingsPluginTpl {
   override lazy val projectSettings: Seq[Def.Setting[_]] = {
     tplProjectSettingsPlus(
       developers := List(Developer("cerst", "Constantin Gerstberger", "", url("https://github.com/cerst"))),
-      git.baseVersion := "0.0.0",
+      git.baseVersion := "0.1.0",
       // basically only needed for sbt-ghpages
       git.remoteRepo := "git@github.com:cerst/factories.git",
       headerLicense := Some(HeaderLicense.MIT(startYear.value.get.toString, organizationName.value)),
@@ -18,6 +18,7 @@ object CommonSettingsPlugin extends CommonSettingsPluginTpl {
       licenses += "MIT" -> url("https://opensource.org/licenses/MIT"),
       organization := "com.github.cerst",
       organizationName := "Constantin Gerstberger",
+      publishMavenStyle := true,
       resolvers ++= Dependencies.resolvers,
       scmInfo := Some(ScmInfo(homepage.value.get, git.remoteRepo.value)),
       startYear := Some(2019)

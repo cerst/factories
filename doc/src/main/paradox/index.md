@@ -7,3 +7,5 @@
 * [Usage](usage/index.md)
 
 @@@
+
+Standardized Scala factory methods with accumulated error messages.
