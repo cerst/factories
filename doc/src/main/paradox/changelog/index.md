@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.2.0+
+## 0.2.0
 **Breaking Changes**:
 * rename _safeCreate_ to _createEither_ and _unsafeCreate_ to _create_ to be consistent with newly added _createTry_
 
