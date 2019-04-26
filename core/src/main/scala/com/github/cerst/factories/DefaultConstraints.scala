@@ -21,15 +21,11 @@
 
 package com.github.cerst.factories
 
-import com.github.cerst.factories.constraints.{
-  DoubleConstraints,
-  FloatConstraints,
-  IntConstraints,
-  LongConstraints,
-  ShortConstraints,
-  StringConstraints
-}
+import com.github.cerst.factories.constraints._
 
+/**
+  * Aggregates all constraint type implementations for import convenience.
+  */
 object DefaultConstraints
     extends DoubleConstraints
     with FloatConstraints

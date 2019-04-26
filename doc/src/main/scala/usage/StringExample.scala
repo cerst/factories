@@ -27,14 +27,35 @@ import com.github.cerst.factories._
 
 import scala.util.matching.Regex
 
-final case class IpV4Address(stringValue: String) extends AnyVal
+object StringExample {
 
-object IpV4Address {
+  final case class IpV4Address(stringValue: String) extends AnyVal
 
-  val regex: Regex = """\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}""".r
+  object IpV4Address {
 
-  def apply(string: String): IpV4Address = {
-    string.unsafeCreate(new IpV4Address(_), _ matches regex)
+    val regex: Regex = """\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}""".r
+
+    def apply(string: String): IpV4Address = {
+      // constraints are
+      // - passed-in as varargs (i.e. you can specify 0 or more)
+      // - evaluated in an '&&' fashion (i.e. the result is an error if and only if at least one constraint is violated)
+      string.create(new IpV4Address(_), _.length >= 0, _ matches regex)
+    }
+
+    // there's also on overload to represent the error case as part of the return type
+    def apply2(string: String): Either[String, IpV4Address] = {
+      string.createEither(new IpV4Address(_), _ matches regex)
+    }
+
   }
+
+  def main(args: Array[String]): Unit = {
+    println(IpV4Address.apply2("1234"))
+    // Left('1234' is not a valid 'IpV4Address' due to the following constraint violations: [ _ matches \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} ])
+
+    println(IpV4Address.apply("1234"))
+    // Exception in thread "main" java.lang.IllegalArgumentException: '1234' is not a valid 'IpV4Address' due to the following constraint violations: [ _ matches \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} ]
+  }
+
 }
 // #string_example

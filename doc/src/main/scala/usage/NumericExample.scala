@@ -25,13 +25,35 @@ package usage
 import com.github.cerst.factories.DefaultConstraints._
 import com.github.cerst.factories._
 
-final case class PersonId(intValue: Int) extends AnyVal
+object NumericExample {
 
-object PersonId {
+  final case class PersonId(intValue: Int) extends AnyVal
 
-  def apply(intValue: Int): PersonId = {
-    intValue.unsafeCreate(new PersonId(_), _ >= 0)
+  object PersonId {
+
+    @throws[IllegalArgumentException]
+    def apply(intValue: Int): PersonId = {
+      // constraints are
+      // - passed-in as varargs (i.e. you can specify 0 or more)
+      // - evaluated in an '&&' fashion (i.e. the result is an error if and only if at least one constraint is violated)
+      intValue.create(new PersonId(_), _ >= 0, _ <= 1024)
+    }
+
+    // there's also on overload to represent the error case using Either
+    def apply2(intValue: Int): Either[String, PersonId] = {
+      intValue.createEither(new PersonId(_), _ >= 0, _ <= 1024)
+    }
+
+  }
+
+  def main(args: Array[String]): Unit = {
+    println(PersonId.apply2(-1))
+    // Left('-1' is not a valid 'PersonId' due to the following constraint violations: [ _ >= 0 ])
+
+    println(PersonId(-1))
+    // Exception in thread "main" java.lang.IllegalArgumentException: '-1' is not a valid 'PersonId' due to the following constraint violations: [ _ >= 0 ]
   }
 
 }
+
 // #numeric_example
