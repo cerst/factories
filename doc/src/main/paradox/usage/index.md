@@ -5,33 +5,35 @@
 @@dependency[sbt,Maven,Gradle] { group="$group$" artifact="$name.core$" version="$version$" }
 
 
-## Numeric Types (Double, Float, Int, Long, Short)
-
-By default, implementations of the following operators are available for numeric types:
-
-* <
-* <=
-* \>
-* \>=
-
-Example:
+## Numeric Example
 
 @@snip[Example.scala]($root$/src/main/scala/usage/NumericExample.scala) { #numeric_example }
 
 
-## String
-
-By default, implementations of the following operators are available for strings:
-
-* _.length <
-* _.length <=
-* _.length >
-* _.length >=
-* matches
-
-Example:
+## String Example
 
 @@snip[Example.scala]($root$/src/main/scala/usage/StringExample.scala) { #string_example }
+
+
+## Constraint Syntax and Instances
+
+Factories comes with instances of _<_, _<=_, _>_ and _>=_ for:
+
+* _BigDecimal_
+* _BigInt_
+* _Double_
+* _Duration (java.time & scala.concurrent)_
+* _Float_
+* _Instant (java.time)_
+* _Int_
+* _Long_
+* _OffsetDateTime (java.time)_
+* _Short_
+* _ZonedDateTime (java.time)_
+
+Furthermore, there are instances of _\_.length <_, _\_.length <=_, _\_.length >_, _\_.length >=_ and _matches_ for:
+
+* _String_ 
 
 
 ## Selective Imports

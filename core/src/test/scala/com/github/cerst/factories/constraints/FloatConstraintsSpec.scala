@@ -19,10 +19,10 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.github.cerst.factories
+package com.github.cerst.factories.constraints
 
-import com.github.cerst.factories.util.NumericConstraintsSpec
 import com.github.cerst.factories.constraints.FloatConstraints._
+import com.github.cerst.factories.util.NumericConstraintsSpec
 
 final class FloatConstraintsSpec
     extends NumericConstraintsSpec[Float](

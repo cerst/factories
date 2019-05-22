@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.3.0+
+* Add constraint implementations for 
+  * _java.time.Duration_
+  * _java.time.Instant_
+  * _java.time.OffsetDateTime._
+  * _java.time.ZonedDateTime._
+  * _scala.BigDecimal_
+  * _scala.BigInt_
+  * _scala.concurrent.Duration._
+* Only list dependencies with scope _Compile_ or _Provided_ in the documentation
+
 ## 0.2.0
 **Breaking Changes**:
 * rename _safeCreate_ to _createEither_ and _unsafeCreate_ to _create_ to be consistent with newly added _createTry_

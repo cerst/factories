@@ -27,9 +27,16 @@ import com.github.cerst.factories.constraints._
   * Aggregates all constraint type implementations for import convenience.
   */
 object DefaultConstraints
-    extends DoubleConstraints
+    extends BigDecimalConstraints
+    with BigIntConstraints
+    with DoubleConstraints
+    with DurationConstraints
     with FloatConstraints
+    with InstantConstraints
     with IntConstraints
+    with JavaDurationConstraints
     with LongConstraints
+    with OffsetDateTimeConstraints
     with ShortConstraints
     with StringConstraints
+    with ZonedDateTimeConstraints

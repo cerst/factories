@@ -19,14 +19,14 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.github.cerst.factories
+package com.github.cerst.factories.constraints
 
+import com.github.cerst.factories.constraints.StringConstraints._
+import com.github.cerst.factories.syntax.ConstraintSyntax
 import com.github.cerst.factories.util.NoShrink
 import org.scalacheck.Gen
 import org.scalatest.prop.{GeneratorDrivenPropertyChecks, TableDrivenPropertyChecks}
 import org.scalatest.{FreeSpec, Matchers}
-import com.github.cerst.factories.constraints.StringConstraints._
-import com.github.cerst.factories.syntax.ConstraintSyntax
 
 final class StringConstraintsSpec
     extends FreeSpec

@@ -19,10 +19,10 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.github.cerst.factories
+package com.github.cerst.factories.constraints
 
-import com.github.cerst.factories.constraints.IntConstraints._
+import com.github.cerst.factories.constraints.LongConstraints._
 import com.github.cerst.factories.util.NumericConstraintsSpec
 
-final class IntConstraintsSpec
-    extends NumericConstraintsSpec[Int](dec = _ - 1, inc = _ + 1, globalMax = Int.MaxValue, globalMin = Int.MinValue)
+final class LongConstraintsSpec
+    extends NumericConstraintsSpec[Long](dec = _ - 1, inc = _ + 1, globalMax = Long.MaxValue, globalMin = Long.MinValue) {}

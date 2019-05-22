@@ -19,15 +19,10 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.github.cerst.factories
+package com.github.cerst.factories.constraints
 
-import com.github.cerst.factories.constraints.DoubleConstraints._
+import com.github.cerst.factories.constraints.IntConstraints._
 import com.github.cerst.factories.util.NumericConstraintsSpec
 
-final class DoubleConstraintsSpec
-    extends NumericConstraintsSpec[Double](
-      dec = Math.nextDown,
-      inc = Math.nextUp,
-      globalMax = Double.MaxValue,
-      globalMin = Double.MinValue,
-    ) {}
+final class IntConstraintsSpec
+    extends NumericConstraintsSpec[Int](dec = _ - 1, inc = _ + 1, globalMax = Int.MaxValue, globalMin = Int.MinValue)
