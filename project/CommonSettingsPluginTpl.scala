@@ -25,11 +25,13 @@ trait CommonSettingsPluginTpl extends AutoPlugin {
     licenseReportTypes := Seq(MarkDown)
   )
 
-  private def scalaSettings: Seq[Def.Setting[_]] =
-    Seq(scalaVersion := "2.12.8", versionToFile := {
+  private def scalaSettings: Seq[Def.Setting[_]] = Seq(
+    scalaVersion := "2.12.8",
+    versionToFile := {
       val file = target.value / "version-to-file" / "version"
       IO.write(file, version.value)
-    })
+    }
+  )
 
   // these settings are based on: http://tpolecat.github.io/2017/04/25/scalac-flags.html
   private def scalacSettings: Seq[Def.Setting[_]] = Seq(
@@ -82,7 +84,11 @@ trait CommonSettingsPluginTpl extends AutoPlugin {
       "-Ywarn-value-discard" // Warn when non-Unit expression results are unused.
     ),
     // "Note that the REPL can’t really cope with -Ywarn-unused:imports or -Xfatal-warnings so you should turn them off for the console."
-    scalacOptions in (Compile, console) ~= (_.filterNot(Set("-Ywarn-unused:imports", "-Xfatal-warnings")))
+    scalacOptions in (Compile, console) ~= (_.filterNot(
+      Set(
+        "-Ywarn-unused:imports",
+        "-Xfatal-warnings"
+      )))
   )
 
 }
