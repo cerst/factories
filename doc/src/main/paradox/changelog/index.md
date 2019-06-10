@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.3.0+
+## 0.3.0
 
 * Add constraint implementations for 
     * _java.time.Duration_
