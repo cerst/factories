@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+<title>Changelog · factories</title>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content='factories-doc'/>
+<link rel="canonical" href="https://github.com/cerst/factorieschangelog/index.html"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:100normal,100italic,300normal,300italic,400normal,400italic,500normal,500italic,700normal,700italic,900normal,900italicc" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../lib/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../js/page.js"></script>
+<script type="text/javascript" src="../js/warnOldVersion.js"></script>
+<script type="text/javascript" src="../js/groups.js"></script>
+<link rel="stylesheet" type="text/css" href="../lib/normalize.css/normalize.css"/>
+<link rel="stylesheet" type="text/css" href="../lib/foundation/dist/foundation.min.css"/>
+<link rel="stylesheet" type="text/css" href="../css/page.css"/>
+
+<!--
+<link rel="shortcut icon" href="../images/favicon.ico" />
+-->
+</head>
+
+<body>
+<div class="off-canvas-wrapper">
+<div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+
+<div class="off-canvas position-left" id="off-canvas-menu" data-off-canvas>
+<nav class="off-canvas-nav">
+<div class="nav-home">
+<a href="../index.html" >
+<span class="home-icon">⌂</span>factories
+</a>
+<div class="version-number">
+0.4.0
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="../changelog/index.html" class="active page">Changelog</a></li>
+  <li><a href="../licenses/index.html" class="page">Licenses</a>
+  <ul>
+    <li><a href="../licenses/core.html" class="page">factories</a></li>
+  </ul></li>
+  <li><a href="../usage/index.html" class="page">Usage</a></li>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="off-canvas-content" data-off-canvas-content>
+
+<header class="site-header expanded row">
+<div class="small-12 column">
+<a href="#" class="off-canvas-toggle hide-for-medium" data-toggle="off-canvas-menu"><svg class="svg-icon svg-icon-menu" version="1.1" id="Menu" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 20 20" enable-background="new 0 0 20 20" xml:space="preserve"> <path class="svg-icon-menu-path" fill="#53CDEC" d="M16.4,9H3.6C3.048,9,3,9.447,3,10c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,9.447,16.952,9,16.4,9z M16.4,13
+H3.6C3.048,13,3,13.447,3,14c0,0.553,0.048,1,0.6,1H16.4c0.552,0,0.6-0.447,0.6-1C17,13.447,16.952,13,16.4,13z M3.6,7H16.4
+C16.952,7,17,6.553,17,6c0-0.553-0.048-1-0.6-1H3.6C3.048,5,3,5.447,3,6C3,6.553,3.048,7,3.6,7z"/></svg>
+</a>
+<div class="title"><a href="../index.html">factories</a></div>
+
+<!--
+<a href="https://www.example.com" class="logo show-for-medium">logo</a>
+-->
+</div>
+</header>
+
+<div class="expanded row">
+
+<div class="medium-3 large-2 show-for-medium column">
+<nav class="site-nav">
+<div class="nav-home">
+<a href="../index.html" >
+<span class="home-icon">⌂</span>factories
+</a>
+<div class="version-number">
+0.4.0
+</div>
+</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="../changelog/index.html" class="active page">Changelog</a></li>
+  <li><a href="../licenses/index.html" class="page">Licenses</a>
+  <ul>
+    <li><a href="../licenses/core.html" class="page">factories</a></li>
+  </ul></li>
+  <li><a href="../usage/index.html" class="page">Usage</a></li>
+</ul>
+</div>
+
+</nav>
+</div>
+
+<div class="small-12 medium-9 large-10 column">
+<section class="site-content">
+
+<span id="version-warning"></span>
+
+<div class="page-header row">
+<div class="medium-12 show-for-medium column">
+<div class="nav-breadcrumbs">
+<ul>
+  <li><a href="../index.html">factories</a></li>
+  <li>Changelog</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="page-content row">
+<div class="small-12 large-9 column" id="docs">
+<h1><a href="#changelog" name="changelog" class="anchor"><span class="anchor-link"></span></a>Changelog</h1>
+<h2><a href="#0-4-0" name="0-4-0" class="anchor"><span class="anchor-link"></span></a>0.4.0</h2>
+<ul>
+  <li>Switch to Scala <em>2.13</em> build-wise</li>
+  <li>Cross-publish for Scala <em>2.12</em> as well as <em>2.13</em></li>
+</ul>
+<h2><a href="#0-3-0" name="0-3-0" class="anchor"><span class="anchor-link"></span></a>0.3.0</h2>
+<ul>
+  <li>Add constraint implementations for
+    <ul>
+      <li><em>java.time.Duration</em></li>
+      <li><em>java.time.Instant</em></li>
+      <li><em>java.time.OffsetDateTime.</em></li>
+      <li><em>java.time.ZonedDateTime.</em></li>
+      <li><em>scala.BigDecimal</em></li>
+      <li><em>scala.BigInt</em></li>
+      <li><em>scala.concurrent.Duration.</em></li>
+    </ul>
+  </li>
+  <li>Only list dependencies with scope <em>Compile</em> or <em>Provided</em> in the documentation</li>
+</ul>
+<h2><a href="#0-2-0" name="0-2-0" class="anchor"><span class="anchor-link"></span></a>0.2.0</h2>
+<p><strong>Breaking Changes</strong>:</p>
+<ul>
+  <li>rename <em>safeCreate</em> to <em>createEither</em> and <em>unsafeCreate</em> to <em>create</em> to be consistent with newly added <em>createTry</em></li>
+</ul>
+<p><strong>Other Changes</strong>:</p>
+<ul>
+  <li>Add <em>createTry</em> as a third return type option for factory methods</li>
+  <li>Extend documentation</li>
+  <li>Error messages print the type to be created <em>B</em> within single quotes (just as is the case with the provided value <em>a</em>)</li>
+  <li>Remove license listing for the <em>doc</em> project as it isn&rsquo;t published</li>
+</ul>
+<h2><a href="#0-1-0" name="0-1-0" class="anchor"><span class="anchor-link"></span></a>0.1.0</h2>
+<ul>
+  <li>First release</li>
+</ul>
+<div class="source-github">
+The source code for this page can be found <a href="https://github.com/cerst/factories/tree/v0.4.0/doc/src/main/paradox/changelog/index.md">here</a>.
+</div>
+
+<div class="nav-next">
+<p><strong>Next:</strong> <a href="../licenses/index.html">Licenses</a></p>
+</div>
+</div>
+<div class="large-3 show-for-large column" data-sticky-container>
+<nav class="sidebar sticky" data-sticky data-anchor="docs" data-sticky-on="large">
+<div class="page-nav">
+<div class="nav-title">On this page:</div>
+<div class="nav-toc">
+<ul>
+  <li><a href="../changelog/index.html#changelog" class="header">Changelog</a>
+  <ul>
+    <li><a href="../changelog/index.html#0-4-0" class="header">0.4.0</a></li>
+    <li><a href="../changelog/index.html#0-3-0" class="header">0.3.0</a></li>
+    <li><a href="../changelog/index.html#0-2-0" class="header">0.2.0</a></li>
+    <li><a href="../changelog/index.html#0-1-0" class="header">0.1.0</a></li>
+  </ul></li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+</div>
+
+</section>
+</div>
+
+</div>
+
+<footer class="site-footer">
+
+<section class="site-footer-nav">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 medium-4 large-3 text-center column">
+<div class="nav-links">
+<ul>
+<!-- <li><a href="https://www.example.com/products/">Products</a> -->
+</ul>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section class="site-footer-base">
+<div class="expanded row">
+<div class="small-12 large-offset-2 large-10 column">
+<div class="row site-footer-content">
+
+<div class="small-12 text-center large-9 column">
+
+<!--
+<div class="copyright">
+<span class="text">&copy; 2019</span>
+<a href="https://www.example.com" class="logo">logo</a>
+</div>
+-->
+</div>
+
+</div>
+</div>
+</div>
+</section>
+</footer>
+
+</div>
+</div>
+</div>
+</body>
+
+<script type="text/javascript" src="../lib/foundation/dist/foundation.min.js"></script>
+<script type="text/javascript">jQuery(document).foundation();</script>
+<script type="text/javascript" src="../js/magellan.js"></script>
+
+<style type="text/css">@import "../lib/prettify/prettify.css";</style>
+<script type="text/javascript" src="../lib/prettify/prettify.js"></script>
+<script type="text/javascript" src="../lib/prettify/lang-scala.js"></script>
+<script type="text/javascript">jQuery(function(){window.prettyPrint && prettyPrint()});</script>
+<script type="text/javascript">jQuery(function(jq){initOldVersionWarnings(jq, '0.4.0', 'https://github.com/cerst/factories')});</script>
+
+
+</html>
