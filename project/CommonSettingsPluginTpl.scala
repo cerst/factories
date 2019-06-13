@@ -10,10 +10,10 @@ trait CommonSettingsPluginTpl extends AutoPlugin {
 
   override def trigger: PluginTrigger = allRequirements
 
-  protected def tplProjectSettingsPlus(scalaVersion: String)(additional: Def.Setting[_]*) = {
+  protected def tplProjectSettingsPlus(scalaVersionValue: String)(additional: Def.Setting[_]*) = {
     licenseReportSettings ++
-      scalaSettings(scalaVersion) ++
-      scalacSettings(scalaVersion) ++
+      scalaSettings(scalaVersionValue) ++
+      scalacSettings(scalaVersionValue) ++
       additional
   }
 
@@ -25,8 +25,8 @@ trait CommonSettingsPluginTpl extends AutoPlugin {
     licenseReportTypes := Seq(MarkDown)
   )
 
-  private def scalaSettings(_scalaVersion: String): Seq[Def.Setting[_]] = Seq(
-    scalaVersion := _scalaVersion,
+  private def scalaSettings(scalaVersionValue: String): Seq[Def.Setting[_]] = Seq(
+    scalaVersion := scalaVersionValue,
     // used to read the version during release ("sbt version" causes much noise which makes extraction error-prone)
     versionToFile := {
       val file = target.value / "version-to-file" / "version"
@@ -37,7 +37,7 @@ trait CommonSettingsPluginTpl extends AutoPlugin {
   // these settings are based on:
   //    http://tpolecat.github.io/2017/04/25/scalac-flags.html
   //    https://nathankleyn.com/2019/05/13/recommended-scalac-flags-for-2-13/
-  private def scalacSettings(scalaVersion: String): Seq[Def.Setting[_]] = Seq(
+  private def scalacSettings(scalaVersionValue: String): Seq[Def.Setting[_]] = Seq(
     scalacOptions ++= Seq(
       "-deprecation", // Emit warning and location for usages of deprecated APIs.
       "-encoding",
@@ -80,7 +80,7 @@ trait CommonSettingsPluginTpl extends AutoPlugin {
       "-Ycache-plugin-class-loader:last-modified", // Enables caching of classloaders for compiler plugins
       "-Ycache-macro-class-loader:last-modified" // and macro definitions. This can lead to performance improvements.
     ),
-    CrossVersion.partialVersion(scalaVersion) match {
+    CrossVersion.partialVersion(scalaVersionValue) match {
       // these were removed in Scala 2.13 (not all flags seem to have been mentioned explicitly ...)
       //    https://github.com/scala/scala/pull/6505
       //    https://github.com/scala/scala/pull/6309#issuecomment-379250839

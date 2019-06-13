@@ -6,12 +6,12 @@ import sbt._
 object CommonSettingsPlugin extends CommonSettingsPluginTpl {
 
   lazy val crossScalaVersions = List("2.12.8", "2.13.0")
-  lazy val scalaVersion = "2.13.0"
+  lazy val scalaVersionValue = "2.13.0"
 
   // the rationale for placing settings defs here is that they should (or can) not be updated automatically using the scala-base-sync script
   // in the following, organizationName and startYear would also be required by sbt-header to generate ready-made license headers
   override lazy val projectSettings: Seq[Def.Setting[_]] = {
-    tplProjectSettingsPlus(scalaVersion)(
+    tplProjectSettingsPlus(scalaVersionValue)(
       developers := List(Developer("cerst", "Constantin Gerstberger", "", url("https://github.com/cerst"))),
       git.baseVersion := "0.4.0",
       // basically only needed for sbt-ghpages
