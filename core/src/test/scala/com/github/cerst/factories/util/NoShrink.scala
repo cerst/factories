@@ -21,6 +21,7 @@
 
 package com.github.cerst.factories.util
 
+import com.github.ghik.silencer.silent
 import org.scalacheck.Shrink
 
 /**
@@ -28,6 +29,8 @@ import org.scalacheck.Shrink
   */
 trait NoShrink {
 
+  // TODO: Replace Stream as soon as ScalaCheck has been updated
+  @silent
   implicit def noShrink[A]: Shrink[A] = Shrink[A](_ => Stream.empty)
 
 }

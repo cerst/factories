@@ -27,10 +27,10 @@ import com.github.cerst.factories.constraints.InstantConstraints._
 import com.github.cerst.factories.syntax.ConstraintSyntax
 import com.github.cerst.factories.util.NoShrink
 import org.scalacheck.Gen
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 import org.scalatest.{FreeSpec, Matchers}
 
-final class InstantConstraintsSpec extends FreeSpec with Matchers with GeneratorDrivenPropertyChecks with NoShrink {
+final class InstantConstraintsSpec extends FreeSpec with Matchers with ScalaCheckDrivenPropertyChecks with NoShrink {
 
   import InstantConstraintsSpec._
 

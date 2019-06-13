@@ -25,13 +25,14 @@ import com.github.cerst.factories.constraints.StringConstraints._
 import com.github.cerst.factories.syntax.ConstraintSyntax
 import com.github.cerst.factories.util.NoShrink
 import org.scalacheck.Gen
-import org.scalatest.prop.{GeneratorDrivenPropertyChecks, TableDrivenPropertyChecks}
+import org.scalatest.prop.TableDrivenPropertyChecks
 import org.scalatest.{FreeSpec, Matchers}
+import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 
 final class StringConstraintsSpec
     extends FreeSpec
     with Matchers
-    with GeneratorDrivenPropertyChecks
+    with ScalaCheckDrivenPropertyChecks
     with TableDrivenPropertyChecks
     with NoShrink {
 

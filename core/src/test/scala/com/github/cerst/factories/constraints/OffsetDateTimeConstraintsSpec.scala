@@ -27,13 +27,13 @@ import com.github.cerst.factories.constraints.OffsetDateTimeConstraints._
 import com.github.cerst.factories.syntax.ConstraintSyntax
 import com.github.cerst.factories.util.NoShrink
 import org.scalacheck.Gen
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 import org.scalatest.{FreeSpec, Matchers}
 
 final class OffsetDateTimeConstraintsSpec
     extends FreeSpec
     with Matchers
-    with GeneratorDrivenPropertyChecks
+    with ScalaCheckDrivenPropertyChecks
     with NoShrink {
 
   import OffsetDateTimeConstraintsSpec._

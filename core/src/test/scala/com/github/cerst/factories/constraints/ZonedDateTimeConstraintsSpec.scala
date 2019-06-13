@@ -26,16 +26,15 @@ import java.time.{Instant, OffsetDateTime, ZoneId, ZonedDateTime}
 import com.github.cerst.factories.constraints.ZonedDateTimeConstraints._
 import com.github.cerst.factories.syntax.ConstraintSyntax
 import com.github.cerst.factories.util.NoShrink
+import com.github.ghik.silencer.silent
 import org.scalacheck.Gen
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 import org.scalatest.{FreeSpec, Matchers}
-
-import scala.collection.JavaConverters._
 
 final class ZonedDateTimeConstraintsSpec
     extends FreeSpec
     with Matchers
-    with GeneratorDrivenPropertyChecks
+    with ScalaCheckDrivenPropertyChecks
     with NoShrink {
 
   import ZonedDateTimeConstraintsSpec._
@@ -144,7 +143,12 @@ object ZonedDateTimeConstraintsSpec {
   /** Max nanos of a second: 999.999.999 */
   private final val MaxNanos: Long = 999999999L
 
-  private final val genZoneId: Gen[ZoneId] = Gen.oneOf(ZoneId.getAvailableZoneIds.asScala.toSeq).map(ZoneId.of)
+  // TODO: switch to scala.jdk.CollectionConverters after having dropped support for Scala 2.12
+  @silent
+  private final val genZoneId: Gen[ZoneId] = {
+    import scala.collection.JavaConverters._
+    Gen.oneOf(ZoneId.getAvailableZoneIds.asScala.toSeq).map(ZoneId.of)
+  }
 
   private final val genBaseWithLesser: Gen[(ZonedDateTime, ZonedDateTime)] = {
     for {

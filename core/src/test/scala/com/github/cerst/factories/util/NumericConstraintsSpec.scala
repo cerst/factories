@@ -24,8 +24,8 @@ package com.github.cerst.factories.util
 import com.github.cerst.factories.syntax._
 import org.scalacheck.Gen
 import org.scalacheck.Gen.Choose
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.scalatest.{FreeSpec, Matchers}
+import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 
 abstract class NumericConstraintsSpec[A: Numeric: Choose](dec: A => A, inc: A => A, globalMax: A, globalMin: A)(
   implicit greaterThanForA: GreaterThan[A],
@@ -34,7 +34,7 @@ abstract class NumericConstraintsSpec[A: Numeric: Choose](dec: A => A, inc: A =>
   lessThanOrEqualForA: LessThanOrEqual[A]
 ) extends FreeSpec
     with Matchers
-    with GeneratorDrivenPropertyChecks
+    with ScalaCheckDrivenPropertyChecks
     with NoShrink {
 
   private val genBaseWithGreater: Gen[(A, A)] = {

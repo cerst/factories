@@ -29,8 +29,8 @@ import org.scalacheck.Gen.Choose
 
 final class BigDecimalConstraintsSpec
     extends NumericConstraintsSpec[BigDecimal](
-      dec = x => BigDecimal(Math nextDown x.doubleValue()),
-      inc = x => BigDecimal(Math nextUp x.doubleValue()),
+      dec = x => BigDecimal(Math nextDown x.doubleValue),
+      inc = x => BigDecimal(Math nextUp x.doubleValue),
       globalMax = BigDecimal(Double.MaxValue),
       globalMin = BigDecimal(Double.MinValue)
     ) {}

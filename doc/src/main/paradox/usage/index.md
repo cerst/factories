@@ -1,8 +1,11 @@
 # Usage
 
+
 ## Dependency
 
-@@dependency[sbt,Maven,Gradle] { group="$group$" artifact="$name.core$" version="$version$" }
+$name.core$ is available for Scala _2.12_ and _2.13_.
+
+@@dependency[sbt,Maven,Gradle] { group="$group$" artifact="$name.core$_2.13" version="$version$" }
 
 
 ## Numeric Example

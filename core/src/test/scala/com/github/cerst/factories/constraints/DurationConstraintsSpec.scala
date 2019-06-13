@@ -25,12 +25,12 @@ import com.github.cerst.factories.constraints.DurationConstraints._
 import com.github.cerst.factories.syntax.ConstraintSyntax
 import com.github.cerst.factories.util.NoShrink
 import org.scalacheck.Gen
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
+import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 import org.scalatest.{FreeSpec, Matchers}
 
 import scala.concurrent.duration.{Duration, NANOSECONDS}
 
-final class DurationConstraintsSpec extends FreeSpec with Matchers with GeneratorDrivenPropertyChecks with NoShrink {
+final class DurationConstraintsSpec extends FreeSpec with Matchers with ScalaCheckDrivenPropertyChecks with NoShrink {
 
   import DurationConstraintsSpec._
 
