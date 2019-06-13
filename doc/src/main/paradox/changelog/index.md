@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.4.0+
+## 0.4.0
 
 * Switch to Scala _2.13_ build-wise
 * Cross-publish for Scala _2.12_ as well as _2.13_
