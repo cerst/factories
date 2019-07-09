@@ -25,6 +25,8 @@ package usage
 import com.github.cerst.factories.DefaultConstraints._
 import com.github.cerst.factories._
 
+import scala.util.Try
+
 object NumericExample {
 
   final case class PersonId(intValue: Int) extends AnyVal
@@ -39,14 +41,22 @@ object NumericExample {
       intValue.create(new PersonId(_), _ >= 0, _ <= 1024)
     }
 
-    // there's also on overload to represent the error case using Either
+    // there's also an overload to represent the error case using Either
     def apply2(intValue: Int): Either[String, PersonId] = {
       intValue.createEither(new PersonId(_), _ >= 0, _ <= 1024)
+    }
+
+    // and an overload to represent the error case using Try
+    def apply3(intValue: Int): Try[PersonId] = {
+      intValue.createTry(new PersonId(_), _ >= 0, _ <= 1024)
     }
 
   }
 
   def main(args: Array[String]): Unit = {
+    println(PersonId.apply3(-1))
+    // Failure(java.lang.IllegalArgumentException: '-1' is not a valid 'PersonId' due to the following constraint violations: [ _ >= 0 ])
+
     println(PersonId.apply2(-1))
     // Left('-1' is not a valid 'PersonId' due to the following constraint violations: [ _ >= 0 ])
 

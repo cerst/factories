@@ -25,6 +25,7 @@ package usage
 import com.github.cerst.factories.DefaultConstraints._
 import com.github.cerst.factories._
 
+import scala.util.Try
 import scala.util.matching.Regex
 
 object StringExample {
@@ -47,9 +48,17 @@ object StringExample {
       string.createEither(new IpV4Address(_), _ matches regex)
     }
 
+    // and an overload to represent the error case using Try
+    def apply3(intValue: String): Try[IpV4Address] = {
+      intValue.createTry(new IpV4Address(_), _ matches regex)
+    }
+
   }
 
   def main(args: Array[String]): Unit = {
+    println(IpV4Address.apply3("1234"))
+    // Failure(java.lang.IllegalArgumentException: '1234' is not a valid 'IpV4Address' due to the following constraint violations: [ _ matches \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} ])
+
     println(IpV4Address.apply2("1234"))
     // Left('1234' is not a valid 'IpV4Address' due to the following constraint violations: [ _ matches \d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3} ])
 
