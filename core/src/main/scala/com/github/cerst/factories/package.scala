@@ -38,7 +38,10 @@ package object factories {
     */
   implicit final class Ops[A](val a: A) extends AnyVal {
 
-    private def classTagSimpleName[B: ClassTag]: String = implicitly[ClassTag[B]].runtimeClass.getSimpleName
+    private[factories] def regularSimpleName[B: ClassTag]: String = implicitly[ClassTag[B]].runtimeClass.getSimpleName
+
+    /** Companion objects end with a '$' */
+    private[factories] def companionSimpleName[B: ClassTag]: String = regularSimpleName[B].dropRight(1)
 
     private def checkConstraints(bName: String,
                                  constraints: Seq[ConstraintSyntax.type => Constraint[A]]): Option[String] = {
@@ -70,7 +73,7 @@ package object factories {
       */
     @throws[IllegalArgumentException]("If and only if at least one of the provided <i>constraints<i> is violated")
     def create[B: ClassTag](create: A => B, constraints: (ConstraintSyntax.type => Constraint[A])*): B = {
-      def bName = classTagSimpleName[B]
+      def bName = regularSimpleName[B]
       checkConstraints(bName, constraints) match {
         case None =>
           create(a)
@@ -93,14 +96,15 @@ package object factories {
       * @param constraints The constraints to enforce for the value this method is called on.
       * @tparam B Type of the value to be created by the factory method.
       * @tparam BC Type of the companion object for <i<B</i> (the [[scala.reflect.ClassTag ClassTag]] is used to
-      *            display its name in error messages)
+      *            display its name in error messages).<br/>
+      *            NOTE that the name is expected to end with a '$' which is stripped.
       * @return A thrown exception if and only if at least one of the provided <i>constraints</i> is violated. The
       *         result of invoking the provided <i>create</i> function otherwise.
       */
     @silent // silence the 'companion' parameter not being used (only required for its type to avoid library users needing to explicitly specify type parameters)
     def create[B, BC: ClassTag](companion: BC)(create: A => B,
                                                constraints: (ConstraintSyntax.type => Constraint[A])*): B = {
-      def bName = classTagSimpleName[BC]
+      def bName = companionSimpleName[BC]
       checkConstraints(bName, constraints) match {
         case None =>
           create(a)
@@ -151,7 +155,7 @@ package object factories {
       */
     def createEither[B: ClassTag](create: A => B,
                                   constraints: (ConstraintSyntax.type => Constraint[A])*): Either[String, B] = {
-      def bName = classTagSimpleName[B]
+      def bName = regularSimpleName[B]
       checkConstraints(bName, constraints) match {
         case None =>
           Right(create(a))
@@ -173,7 +177,8 @@ package object factories {
       * @param constraints The constraints to enforce for the value this method is called on.
       * @tparam B Type of the value to be created by the factory method.
       * @tparam BC Type of the companion object for <i<B</i> (the [[scala.reflect.ClassTag ClassTag]] is used to
-      *            display its name in error messages)
+      *            display its name in error messages).<br/>
+      *            NOTE that the name is expected to end with a '$' which is stripped.
       * @return An error message as <i>Left</i> if and only if at least one of the provided
       *         <i>constraints</i> is violated. The result of invoking the provided <i>create</i> function
       *         as <i>Right</i> otherwise.
@@ -182,7 +187,7 @@ package object factories {
     def createEither[B, BC: ClassTag](
       companion: BC
     )(create: A => B, constraints: (ConstraintSyntax.type => Constraint[A])*): Either[String, B] = {
-      def bName = classTagSimpleName[BC]
+      def bName = companionSimpleName[BC]
       checkConstraints(bName, constraints) match {
         case None =>
           Right(create(a))
@@ -235,7 +240,7 @@ package object factories {
       *         invoking the provided <i>create</i> function as <i>Success</i> otherwise.
       */
     def createTry[B: ClassTag](create: A => B, constraints: (ConstraintSyntax.type => Constraint[A])*): Try[B] = {
-      def bName = classTagSimpleName[B]
+      def bName = regularSimpleName[B]
       checkConstraints(bName, constraints) match {
         case None =>
           Success(create(a))
@@ -257,14 +262,16 @@ package object factories {
       * @param constraints The constraints to enforce for the value this method is called on.
       * @tparam B Type of the value to be created by the factory method.
       * @tparam BC Type of the companion object for <i<B</i> (the [[scala.reflect.ClassTag ClassTag]] is used to
-      *            display its name in error messages)
+      *            display its name in error messages).<br/>
+      *            NOTE that the name is expected to end with a '$' which is stripped.
       * @return An error message as <i>Failure</i> [ [[scala#IllegalArgumentException]] ]
       *         if and only if at least one of the provided <i>constraints</i> is violated. The result of
       *         invoking the provided <i>create</i> function as <i>Success</i> otherwise.
       */
     @silent // silence the 'companion' parameter not being used (only required for its type to avoid library users needing to explicitly specify type parameters)
-    def createTry[B, BC: ClassTag](companion: BC)(create: A => B, constraints: (ConstraintSyntax.type => Constraint[A])*): Try[B] = {
-      def bName = classTagSimpleName[BC]
+    def createTry[B, BC: ClassTag](companion: BC)(create: A => B,
+                                                  constraints: (ConstraintSyntax.type => Constraint[A])*): Try[B] = {
+      def bName = companionSimpleName[BC]
       checkConstraints(bName, constraints) match {
         case None =>
           Success(create(a))
@@ -290,7 +297,8 @@ package object factories {
       *         if and only if at least one of the provided <i>constraints</i> is violated. The result of
       *         invoking the provided <i>create</i> function as <i>Success</i> otherwise.
       */
-    def createTry[B: ClassTag](bName: String)(create: A => B, constraints: (ConstraintSyntax.type => Constraint[A])*): Try[B] = {
+    def createTry[B: ClassTag](bName: String)(create: A => B,
+                                              constraints: (ConstraintSyntax.type => Constraint[A])*): Try[B] = {
       checkConstraints(bName, constraints) match {
         case None =>
           Success(create(a))

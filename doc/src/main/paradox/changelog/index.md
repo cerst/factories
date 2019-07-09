@@ -1,7 +1,16 @@
 # Changelog
 
+## 0.6.0
+
+* Add constraint implementations for _scala.Byte_ (thanks [@cSNiHab](https://github.com/cSNiHab))
+* Remove trailing '$' in names derived for companion objects (in error messages)
+
+
+
 ## 0.5.0
+
 * Add overloads to all _create_ functions to address problems with _ClassTag_ derivation.
+
 
 
 ## 0.4.0
