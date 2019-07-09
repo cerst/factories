@@ -19,25 +19,28 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.github.cerst.factories
+package com.github.cerst.factories.constraints
 
-import com.github.cerst.factories.constraints._
+import com.github.cerst.factories.syntax.{GreaterThan, GreaterThanOrEqual, LessThan, LessThanOrEqual}
 
-/**
-  * Aggregates all constraint type implementations for import convenience.
-  */
-object DefaultConstraints
-    extends BigDecimalConstraints
-    with BigIntConstraints
-    with DoubleConstraints
-    with DurationConstraints
-    with FloatConstraints
-    with InstantConstraints
-    with IntConstraints
-    with JavaDurationConstraints
-    with LongConstraints
-    with OffsetDateTimeConstraints
-    with ByteConstraints
-    with ShortConstraints
-    with StringConstraints
-    with ZonedDateTimeConstraints
+trait ByteConstraints {
+
+  implicit final val lessThanForByte: LessThan[Byte] = x => { y =>
+    if (y < x) List.empty else List(s"_ < $x")
+  }
+
+  implicit final val lessThanOrEqualForByte: LessThanOrEqual[Byte] = x => { y =>
+    if (y <= x) List.empty else List(s"_ <= $x")
+  }
+
+  implicit final val greaterThanForByte: GreaterThan[Byte] = x => { y =>
+    if (y > x) List.empty else List(s"_ > $x")
+  }
+
+  implicit final val greaterThanOrEqualForByte: GreaterThanOrEqual[Byte] = x => { y =>
+    if (y >= x) List.empty else List(s"_ >= $x")
+  }
+
+}
+
+object ByteConstraints extends ByteConstraints

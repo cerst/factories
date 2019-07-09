@@ -19,25 +19,15 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.github.cerst.factories
+package com.github.cerst.factories.constraints
 
-import com.github.cerst.factories.constraints._
+import com.github.cerst.factories.constraints.ByteConstraints._
+import com.github.cerst.factories.util.NumericConstraintsSpec
 
-/**
-  * Aggregates all constraint type implementations for import convenience.
-  */
-object DefaultConstraints
-    extends BigDecimalConstraints
-    with BigIntConstraints
-    with DoubleConstraints
-    with DurationConstraints
-    with FloatConstraints
-    with InstantConstraints
-    with IntConstraints
-    with JavaDurationConstraints
-    with LongConstraints
-    with OffsetDateTimeConstraints
-    with ByteConstraints
-    with ShortConstraints
-    with StringConstraints
-    with ZonedDateTimeConstraints
+final class ByteConstraintsSpec
+    extends NumericConstraintsSpec[Byte](
+      dec = x => (x - 1).toByte,
+      inc = x => (x + 1).toByte,
+      globalMax = Byte.MaxValue,
+      globalMin = Byte.MinValue
+    ) {}

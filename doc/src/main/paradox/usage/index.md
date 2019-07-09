@@ -31,6 +31,7 @@ Factories comes with instances of _<_, _<=_, _>_ and _>=_ for:
 * _Int_
 * _Long_
 * _OffsetDateTime (java.time)_
+* _Byte_
 * _Short_
 * _ZonedDateTime (java.time)_
 
