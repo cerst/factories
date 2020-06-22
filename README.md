@@ -1,5 +1,7 @@
 # factories
 
+factories has been superseded by [auto_require](https://github.com/cerst/auto_require)
+
 ## Documentation
 
 * [Latest](https://cerst.github.io/factories)
